@@ -13,13 +13,14 @@ import lombok.ToString;
 @ToString
 public class Projeto {
    private int id;
-   private String nome;
+   private String descricao;
    private LocalDate dataInicio;
    private LocalDate dataFim;
 
    public Projeto(String nome, LocalDate dataInicio, LocalDate dataFim) {
-      this.nome = nome;
+      this.descricao = nome;
       this.dataInicio = dataInicio;
       this.dataFim = dataFim;
    }
 }
+ 
