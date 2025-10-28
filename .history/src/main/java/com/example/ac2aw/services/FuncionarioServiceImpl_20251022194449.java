@@ -1,0 +1,48 @@
+package com.example.ac2aw.services;
+
+import java.util.List;
+
+import com.example.ac2aw.models.Funcionario;
+import com.example.ac2aw.repositories.FuncionarioRepository;
+
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+public class FuncionarioServiceImpl implements FuncionarioService {
+
+   private final FuncionarioRepository repository;
+
+   @Override
+   public Funcionario salvar(Funcionario entity) {
+      return repository.save(entity);
+   }
+
+   @Override
+   public Funcionario atualizar(Funcionario entity) {
+      if (!repository.existsById(entity.getId())) {
+         throw new EntityNotFoundException("Funcionário não encontrado com id: " + entity.getId());
+      }
+      return repository.save(entity);
+   }
+
+   @Override
+   public void deletar(Integer id) {
+      if (!repository.existsById(id)) {
+         throw new EntityNotFoundException("Funcionário não encontrado com id: " + id);
+      }
+      repository.deleteById(id);
+   }
+
+   @Override
+   public Funcionario buscarPorId(Integer id) {
+      return repository.findById(id)
+         .orElseThrow(() -> new EntityNotFoundException("Funcionário não encontrado com id: " + id));
+   }
+
+   @Override
+   public List<Funcionario> buscarTodos() {
+      return repository.findAll();
+   }
+
+}

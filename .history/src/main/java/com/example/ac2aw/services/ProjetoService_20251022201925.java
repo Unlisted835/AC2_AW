@@ -1,0 +1,14 @@
+package com.example.ac2aw.services;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import com.example.ac2aw.models.Projeto;
+
+public interface ProjetoService extends ServiceBase<Projeto, Integer> {
+
+   public Projeto findByIdIncludingFuncionarios(int id);
+
+   public List<Projeto> findAllInsideAPeriod(LocalDate dataInicio, LocalDate dataFim);
+
+}

@@ -1,0 +1,52 @@
+package com.example.ac2aw.services;
+
+import java.util.List;
+
+import com.example.ac2aw.models.Setor;
+import com.example.ac2aw.repositories.SetorRepository;
+
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+public class SetorServiceImpl implements SetorService {
+
+   private final SetorRepository repository;
+
+   @Override
+   @Transactional
+   public Setor save(Setor entity) {
+      return repository.save(entity);
+   }
+
+   @Override
+   @Transactional
+   public Setor update(Setor entity) {
+      if (!repository.existsById(entity.getId())) {
+         throw new EntityNotFoundException("Setor não encontrado com id: " + entity.getId());
+      }
+      return repository.save(entity);
+   }
+
+   @Override
+   @Transactional
+   public void deletar(Integer id) {
+      if (!repository.existsById(id)) {
+         throw new EntityNotFoundException("Setor não encontrado com id: " + id);
+      }
+      repository.deleteById(id);
+   }
+
+   @Override
+   public Setor buscarPorId(Integer id) {
+      return repository.findById(id)
+         .orElseThrow(() -> new EntityNotFoundException("Setor não encontrado com id: " + id));
+   }
+
+   @Override
+   public List<Setor> buscarTodos() {
+      return repository.findAll();
+   }
+
+}
