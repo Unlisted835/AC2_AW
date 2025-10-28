@@ -36,7 +36,7 @@ public class ProjetoController {
    @PostMapping
    @ResponseStatus(HttpStatus.CREATED)
    public ProjetoDTO salvar(@RequestBody ProjetoCreateUpdateDTO dto) {
-      if (dto.dataInicio().isAfter(dto.dataFim())) {
+      if (dto.dataInicio().isAfter(dto.dataFinal())) {
          throw new ValidationException("dataFim", "A data de fim não pode ser menor que a data de início");
       }
       Projeto p = new Projeto(dto);

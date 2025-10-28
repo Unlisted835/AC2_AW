@@ -39,6 +39,13 @@ public class Funcionario {
    @JoinColumn(name = "setor_id")
    private Setor setor;
 
+   public void setSetor(Setor setor) {
+      this.setor = setor;
+      if (!setor.getFuncionarios().contains(this)) {
+         setor.getFuncionarios().add(this);
+      }
+   }
+
    @ManyToMany
    @JoinTable(name = "funcionario_projeto",
          joinColumns = @JoinColumn(name = "funcionario_id"),
@@ -48,16 +55,7 @@ public class Funcionario {
 
    public void setProjetos(List<Projeto> projetos) {
       this.projetos.clear();
-      for (Projeto projeto : projetos) {
-         this.addProjeto(projeto);
-      }
-   }
-
-   public void addProjeto(Projeto projeto) {
-      this.projetos.add(projeto);
-      if (!projeto.getFuncionarios().contains(this)) {
-         projeto.getFuncionarios().add(this);
-      }
+      this.projetos.addAll(projetos);
    }
 
    public Funcionario(String nome) {

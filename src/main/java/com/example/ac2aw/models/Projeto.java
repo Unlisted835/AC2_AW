@@ -44,6 +44,20 @@ public class Projeto {
    )
    private List<Funcionario> funcionarios = new ArrayList<>();
 
+   public void setFuncionarios(List<Funcionario> funcionarios) {
+      this.funcionarios.clear();
+      for (Funcionario funcionario : funcionarios) {
+         addFuncionario(funcionario);
+      }
+   }
+
+   public void addFuncionario(Funcionario funcionario) {
+      funcionarios.add(funcionario);
+      if (!funcionario.getProjetos().contains(this)) {
+         funcionario.getProjetos().add(this);
+      }
+   }
+
    public Projeto(String descricao, LocalDate dataInicio, LocalDate dataFim) {
       this.descricao = descricao;
       this.dataInicio = dataInicio;
@@ -53,6 +67,6 @@ public class Projeto {
    public Projeto(ProjetoCreateUpdateDTO dto) {
       this.descricao = dto.descricao();
       this.dataInicio = dto.dataInicio();
-      this.dataFim = dto.dataFim();
+      this.dataFim = dto.dataFinal();
    }
 }

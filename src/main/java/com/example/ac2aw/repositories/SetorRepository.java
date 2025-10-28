@@ -12,6 +12,6 @@ import com.example.ac2aw.models.Setor;
 public interface SetorRepository extends JpaRepository<Setor, Integer> {
 
    @Query("SELECT s FROM Setor s LEFT JOIN FETCH s.funcionarios")
-   public List<Setor> findAllIncludingFuncionarios();
+   List<Setor> findAllIncludingFuncionarios();
 
 }

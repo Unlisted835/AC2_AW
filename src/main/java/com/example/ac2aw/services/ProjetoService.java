@@ -7,10 +7,10 @@ import com.example.ac2aw.models.Projeto;
 
 public interface ProjetoService extends ServiceBase<Projeto, Integer> {
 
-   public Projeto getByIdIncludingFuncionarios(int id);
+   Projeto getByIdIncludingFuncionarios(int id);
 
-   public List<Projeto> listAllInsidePeriod(LocalDate dataInicio, LocalDate dataFim);
+   List<Projeto> listAllInsidePeriod(LocalDate dataInicio, LocalDate dataFim);
 
-   public void assignFuncionarioToProjeto(int projetoId, int funcionarioId);
+   void assignFuncionarioToProjeto(int projetoId, int funcionarioId);
 
 }

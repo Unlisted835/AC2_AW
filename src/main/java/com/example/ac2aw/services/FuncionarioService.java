@@ -7,6 +7,6 @@ import com.example.ac2aw.models.Projeto;
 
 public interface FuncionarioService extends ServiceBase<Funcionario, Integer> {
 
-   public List<Projeto> listAllRelatedProjects(int funcionarioId);
+   List<Projeto> listAllRelatedProjects(int funcionarioId);
 
 }

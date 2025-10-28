@@ -25,8 +25,8 @@ public class DatabaseSeeding implements CommandLineRunner {
    @Transactional
    public void run(String ...params) throws Exception {
       if (setorRepository.count() > 0 
-      || funcionarioRepository.count() > 0 
-      || projetoRepository.count() > 0) {
+         || funcionarioRepository.count() > 0
+         || projetoRepository.count() > 0) {
          return;
       }
 

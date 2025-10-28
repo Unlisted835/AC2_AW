@@ -13,7 +13,7 @@ import com.example.ac2aw.models.Projeto;
 @Repository
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Integer> {
 
-   @Query ("SELECT p FROM Projeto WHERE p.funcionario")
-   public List<Projeto> findAllRelatedProjects(@Param("id") int id);
+	@Query("SELECT p FROM Funcionario f JOIN f.projetos p WHERE f.id = :id")
+   List<Projeto> findAllRelatedProjects(@Param("id") int id);
 
 }

@@ -15,13 +15,13 @@ import com.example.ac2aw.models.Projeto;
 @Repository
 public interface ProjetoRepository extends JpaRepository<Projeto, Integer> {
 
-   @Query("SELECT p FROM Projeto p LEFT JOIN FETCH p.funcionario WHERE p.id = :id")
-   public Optional<Projeto> findByIdIncludingFuncionarios(@Param("id") int id);
+   @Query("SELECT p FROM Projeto p LEFT JOIN FETCH p.funcionarios WHERE p.id = :id")
+   Optional<Projeto> findByIdIncludingFuncionarios(@Param("id") int id);
 
    @Query("SELECT p FROM Projeto p WHERE p.dataInicio >= :dataInicio AND p.dataFim <= :dataFim")
-   public List<Projeto> findAllInsidePeriod(@Param("dataInicio") LocalDate dataInicio, @Param("dataFim") LocalDate dataFim);
+   List<Projeto> findAllInsidePeriod(@Param("dataInicio") LocalDate dataInicio, @Param("dataFim") LocalDate dataFim);
 
-   @Query("SELECT f FROM Funcionario f JOIN f.projetos p WHERE p.id = :projetoId")
-   public Optional<Funcionario> findFuncionarioById(int id);
+   @Query("SELECT f FROM Funcionario f JOIN f.projetos p WHERE p.id = :id")
+   Optional<Funcionario> findFuncionarioById(int id);
 
 }

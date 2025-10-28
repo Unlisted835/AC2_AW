@@ -36,6 +36,18 @@ public class Setor {
    @OneToMany(mappedBy = "setor")
    private List<Funcionario> funcionarios = new ArrayList<>();
 
+   public void setFuncionarios(List<Funcionario> funcionarios) {
+      this.funcionarios.clear();
+      for (Funcionario funcionario : funcionarios) {
+         addFuncionario(funcionario);
+      }
+   }
+
+   public void addFuncionario(Funcionario funcionario) {
+      funcionarios.add(funcionario);
+      funcionario.setSetor(this);
+   }
+
    public Setor(String nome) {
       this.nome = nome;
    }

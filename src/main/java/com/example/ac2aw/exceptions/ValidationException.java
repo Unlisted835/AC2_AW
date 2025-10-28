@@ -1,7 +1,10 @@
 package com.example.ac2aw.exceptions;
 
+import lombok.*;
+
 import java.util.List;
 
+@Getter
 public class ValidationException extends RuntimeException {
 
    private List<Failure> failures;
@@ -19,10 +22,7 @@ public class ValidationException extends RuntimeException {
    public ValidationException(String field, String message) {
       this.failures = List.of(new Failure(field, message));
    }
-   public List<Failure> getFailures() {
-      return failures;
-   }
 
 
-   public record Failure(String field, String message) { }
+	public record Failure(String field, String message) { }
 }

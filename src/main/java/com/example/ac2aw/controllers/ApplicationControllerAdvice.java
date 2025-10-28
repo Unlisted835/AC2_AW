@@ -1,6 +1,7 @@
 package com.example.ac2aw.controllers;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.*;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,5 +26,18 @@ public class ApplicationControllerAdvice {
    public String handleEntityNotFoundException(EntityNotFoundException ex) {
       return ex.getMessage();
    }
-   
+
+   @ExceptionHandler(Exception.class)
+   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+   public ExceptionDTO handleUntreatedException(Exception e) {
+      return new ExceptionDTO(e);
+   }
+
+   public record ExceptionDTO (String exceptionClass, String message, String stackTrace) {
+      public ExceptionDTO(Exception e) {
+         this(e.getClass().getSimpleName(), e.getMessage(), Arrays.stream(e.getStackTrace())
+               .map(StackTraceElement::toString)
+               .collect(Collectors.joining("     |     ")));
+      }
+   }
 }

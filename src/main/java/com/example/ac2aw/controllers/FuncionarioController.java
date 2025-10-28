@@ -37,7 +37,7 @@ public class FuncionarioController {
    public FuncionarioDTO salvarFuncionario(@RequestBody FuncionarioCreateUpdateDTO dto) {
       Funcionario f = new Funcionario(dto);
       f = service.save(f);
-      return new FuncionarioDTO(f);
+      return new FuncionarioDTO(f, true);
    }
 
    @DeleteMapping("{id}")
@@ -52,27 +52,27 @@ public class FuncionarioController {
       Funcionario f = new Funcionario(dto);
       f.setId(id);
       f = service.edit(f);
-      return new FuncionarioDTO(f);
+      return new FuncionarioDTO(f, true);
    }
 
    @GetMapping
    @ResponseStatus(HttpStatus.OK)
    public List<FuncionarioDTO> obterTodos() {
-      return service.list().stream().map(FuncionarioDTO::new).toList();
+      return service.list().stream().map(f -> new FuncionarioDTO(f, true)).toList();
    }
 
    @GetMapping("/{id}")
    @ResponseStatus(HttpStatus.OK)
    public FuncionarioDTO buscarPorId(@PathVariable int id) {
       Funcionario f = service.get(id);
-      return new FuncionarioDTO(f);
+      return new FuncionarioDTO(f, true);
    }
 
    @GetMapping("/{id}/projetos")
    @ResponseStatus(HttpStatus.OK)
    public List<ProjetoDTO> buscarProjetos(@PathVariable int id) {
       List<Projeto> list = service.listAllRelatedProjects(id);
-      return list.stream().map(ProjetoDTO::new).toList();
+      return list.stream().map(p -> new ProjetoDTO(p)).toList();
    }
 
 }

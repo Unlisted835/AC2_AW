@@ -18,7 +18,7 @@ public record ProjetoDTO(
          projeto.getDescricao(), 
          projeto.getDataInicio(), 
          projeto.getDataFim(),
-         projeto.getFuncionarios().stream().map(FuncionarioDTO::new).toList());
+         projeto.getFuncionarios().stream().map(f -> new FuncionarioDTO(f, false)).toList());
    }
 
 }

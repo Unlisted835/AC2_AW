@@ -34,7 +34,7 @@ public class SetorController {
    public SetorDTO salvar(@RequestBody SetorCreateUpdateDTO dto) {
       Setor s = new Setor(dto);
       service.save(s);
-      return new SetorDTO(s);
+      return new SetorDTO(s, true);
    }
 
    @DeleteMapping("{id}")
@@ -49,26 +49,26 @@ public class SetorController {
       Setor s = new Setor(dto);
       s.setId(id);
       service.edit(s);
-      return new SetorDTO(s);
+      return new SetorDTO(s, true);
    }
 
    @GetMapping
    @ResponseStatus(HttpStatus.OK)
    public List<SetorDTO> obterTodos() {
-      return service.list().stream().map(SetorDTO::new).toList();
+      return service.list().stream().map(s -> new SetorDTO(s, true)).toList();
    }
 
    @GetMapping("/{id}")
    @ResponseStatus(HttpStatus.OK)
    public SetorDTO buscarSetorPorId(@PathVariable int id) {
       Setor s = service.get(id);
-      return new SetorDTO(s);
+      return new SetorDTO(s, true);
    }
 
    @GetMapping("/setor-com-funcionarios")
    @ResponseStatus(HttpStatus.OK)
    public List<SetorDTO> listarSetoresComFuncionarios() {
-      return service.listAllIncludingFuncionarios().stream().map(SetorDTO::new).toList();
+      return service.listAllIncludingFuncionarios().stream().map(s -> new SetorDTO(s, true)).toList();
    }
 
 }
