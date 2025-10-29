@@ -21,10 +21,7 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Integer> {
    @Query("SELECT p FROM Projeto p WHERE p.dataInicio >= :dataInicio AND p.dataFim <= :dataFim")
    List<Projeto> findAllInsidePeriod(@Param("dataInicio") LocalDate dataInicio, @Param("dataFim") LocalDate dataFim);
 
-   @Query("SELECT f FROM Funcionario f WHERE f.id = :id")
+   @Query("SELECT f FROM Funcionario f WHERE p.id = :id")
    Optional<Funcionario> findFuncionarioById(int id);
-
-   @Query("SELECT p FROM Projeto p WHERE p.id = :id")
-   Optional<Projeto> findByIdWithoutFuncionarios(int id);
 
 }

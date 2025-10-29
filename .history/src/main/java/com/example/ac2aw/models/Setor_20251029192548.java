@@ -34,7 +34,7 @@ public class Setor {
 
    private String nome;
 
-   @OneToMany(mappedBy = "setor", fetch = FetchType.LAZY)
+   @OneToMany(mappedBy = "setor", fetch = FetchType.EAGER)
    private List<Funcionario> funcionarios = new ArrayList<>();
 
    public void setFuncionarios(List<Funcionario> funcionarios) {

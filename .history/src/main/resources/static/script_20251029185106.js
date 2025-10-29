@@ -57,7 +57,7 @@ function renderTabela(lista) {
       return `<tr>
       <td><strong>${escapeHtml(p.descricao)}</strong></td>
       <td>${escapeHtml(p.dataInicio || "—")}</td>
-      <td>${escapeHtml(p.dataFinal || "—")}</td>
+      <td>${escapeHtml(p.dataFim || "—")}</td>
       <td>${equipe || "—"}</td>
     </tr>`;
    }).join("");
