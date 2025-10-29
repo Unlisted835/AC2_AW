@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Projetos — Listar & Inserir</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Projetos</h1>
+      <button id="toggleForm" class="btn">Fechar formulário</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="grid">
+      <!-- FORMULÁRIO -->
+      <section class="card" id="formCard">
+        <div class="body">
+          <h2>Inserir novo projeto</h2>
+          <form id="formProjeto">
+            <div>
+              <label>Descrição *</label>
+              <input type="text" id="descricao" placeholder="Ex.: Implementação do módulo X"/>
+              <div class="error" id="err-descricao"></div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label>Início</label>
+                <input type="date" id="dataInicio" />
+              </div>
+              <div>
+                <label>Fim</label>
+                <input type="date" id="dataFim" />
+                <div class="error" id="err-dataFim"></div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button type="submit" class="btn primary">Salvar projeto</button>
+              <button type="button" class="btn" id="btnLimpar">Limpar</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- LISTAGEM -->
+      <section class="card">
+        <div class="body">
+          <div class="toolbar">
+            <div class="search">
+              <input type="text" id="busca" placeholder="Buscar por descrição ou equipe..." />
+              <select id="ordenar">
+                <option value="dataInicio">Mais recente (início)</option>
+                <option value="descricao">Descrição (A-Z)</option>
+              </select>
+            </div>
+            <p class="muted"><span id="contagem">0</span> projeto(s) listado(s)</p>
+          </div>
+
+          <div class="tabela">
+            <table>
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th>Início</th>
+                  <th>Fim</th>
+                  <th>Equipe</th>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+                <tr><td colspan="4" class="muted">Carregando...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
