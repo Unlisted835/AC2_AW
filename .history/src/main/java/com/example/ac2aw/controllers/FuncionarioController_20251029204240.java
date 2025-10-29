@@ -52,8 +52,6 @@ public class FuncionarioController {
    @ResponseStatus(HttpStatus.OK)
    public FuncionarioDTO editarFuncionario(@PathVariable int id, @RequestBody FuncionarioCreateUpdateDTO dto) {
       Funcionario f = new Funcionario(dto);
-      Setor setor = service.findSetorById(dto.setorId());
-      f.setSetor(setor);
       f.setId(id);
       f = service.edit(f);
       return new FuncionarioDTO(f, true);

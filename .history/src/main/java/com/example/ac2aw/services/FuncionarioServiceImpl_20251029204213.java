@@ -66,7 +66,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
    @Override
    public Setor findSetorById(int id) {
       return repository.findSetorById(id)
-         .orElseThrow(() -> new EntityNotFoundException("Setor não encontrado com id: " + id));
+         .orElseThrow(() -> new EntityNotFoundException("Setor não encontrado com id: " + dto.setorId()));
    }
 
 }

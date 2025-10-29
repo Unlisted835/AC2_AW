@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.ac2aw.models.Funcionario;
 import com.example.ac2aw.models.Projeto;
-import com.example.ac2aw.models.Setor;
 
 @Repository
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Integer> {
@@ -19,6 +18,6 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Intege
    List<Projeto> findAllRelatedProjects(@Param("id") int id);
 
    @Query("SELECT s FROM Setor s WHERE s.id = :setorId")
-   Optional<Setor> findSetorById(int setorId);
+   Optional<Funcionario> findSetorById(int setorId);
 
 }

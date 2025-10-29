@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.example.ac2aw.dtos.FuncionarioCreateUpdateDTO;
 import com.example.ac2aw.models.Funcionario;
 import com.example.ac2aw.models.Projeto;
-import com.example.ac2aw.models.Setor;
 import com.example.ac2aw.repositories.FuncionarioRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -64,9 +63,8 @@ public class FuncionarioServiceImpl implements FuncionarioService {
    }
 
    @Override
-   public Setor findSetorById(int id) {
-      return repository.findSetorById(id)
-         .orElseThrow(() -> new EntityNotFoundException("Setor não encontrado com id: " + id));
+   public FuncionarioCreateUpdateDTO hydrateDTO(FuncionarioCreateUpdateDTO dto) {
+      throw new UnsupportedOperationException("Unimplemented method 'hydrateDTO'");
    }
 
 }
